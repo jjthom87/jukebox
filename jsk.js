@@ -17,6 +17,30 @@ $(document).ready(function(){
 		song: 'up_the_cuts',
 		screen: 'Up The Cuts',
 		artist: 'Against Me!'
+	},{
+		song: 'basket_case',
+		screen: 'Basket Case',
+		artist: 'Green Day'
+	},{
+		song: 'brain_stew',
+		screen: 'Brain Stew',
+		artist: 'Green Day'
+	},{
+		song: 'she',
+		screen: 'She',
+		artist: 'Green Day'
+	},{
+		song: 'walking_contradiction',
+		screen: 'Walking Contradiction',
+		artist: 'Green Day'
+	},{
+		song: 'welcome_to_paradise',
+		screen: 'Welcome To Paradise',
+		artist: 'Green Day'
+	},{
+		song: 'when_i_come_around',
+		screen: 'When I Come Around',
+		artist: 'Green Day'
 	}]
 
 	var randomSong = Math.floor(Math.random() * songs.length)
@@ -54,6 +78,11 @@ $(document).ready(function(){
 				appendAudioTags(randomSong, audioDiv);
 				appendPTags(randomSong, currentSongDiv, audioDiv);
 				break;
+			case "next":
+				randomSong = randomSong + 1;
+				$('.song-playing').remove();
+				appendAudioTags(randomSong, audioDiv);
+				appendPTags(randomSong, currentSongDiv, audioDiv);
 		}
 	})
 
@@ -83,5 +112,16 @@ $(document).ready(function(){
 	function pause(index){
 		$('#playing-' + songs[index].song)[0].pause();
 	}
+
+	var songListDiv = $('<div>');
+	var songList = $('<ol>');
+	var songLi;
+	for(var i = 0; i < songs.length; i++){
+		songLi = $('<li>')
+		songLi.text('Song: ' + songs[i].screen + ", Artist: " + songs[i].artist);
+		songList.append(songLi);
+	}
+	songListDiv.append(songList);
+	$('div').eq(0).append(songListDiv)
 
 })
